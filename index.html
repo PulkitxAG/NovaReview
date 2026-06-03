@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaReview | AI Resume & GitHub Reviewer</title>
+    <meta name="description"
+        content="AI-powered 4-in-1 expert review of your Resume and GitHub profile. Live scoring, skill gaps, and verified code cross-checks.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="confetti-canvas"
+        style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;"></canvas>
+    <!-- Floating Background Shapes -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="ph-fill ph-rocket-launch"></i> NovaReview
+            </a>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#analyzer">Live Analyser</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle-btn"><i class="ph-bold ph-moon"></i></button>
+            <a href="#analyzer" class="btn btn-primary nav-cta pulse-btn">Start Free Review</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="pulse-dot"></span> Live AI Agent Engine V3.1
+            </div>
+            <h1 class="hero-title">Your 4-in-1 <span class="gradient-text">Expert Reviewer.</span></h1>
+            <p class="hero-subtitle">Get scored by a Hiring Manager, Principal Engineer, Recruiter, and Career Coach all
+                at once. Verified GitHub cross-checks included.</p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="ph-fill ph-users"></i>
+                    <span class="stat-value">50K+</span>
+                    <span class="stat-label">Analyses</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <i class="ph-fill ph-target"></i>
+                    <span class="stat-value">94%</span>
+                    <span class="stat-label">Accuracy Score</span>
+                </div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="#analyzer" class="btn btn-large btn-primary">Try Live Analyser <i
+                        class="ph-bold ph-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Animated UI Preview in Hero -->
+        <div class="hero-visual">
+            <div class="glass-panel floating-panel-1">
+                <div class="panel-header">
+                    <i class="ph-fill ph-github-logo"></i> GitHub Verified
+                </div>
+                <div class="panel-body">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="score-tag green">98/100</div>
+                </div>
+            </div>
+            <div class="glass-panel floating-panel-2">
+                <div class="panel-header">
+                    <i class="ph-fill ph-briefcase"></i> ATS Match
+                </div>
+                <div class="panel-body">
+                    <div class="circular-progress">
+                        <span class="progress-value">92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrolling Marquee -->
+    <div class="marquee-wrapper">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span><i class="ph-bold ph-check-circle"></i> Deep ATS Parsing</span>
+                <span><i class="ph-bold ph-check-circle"></i> GitHub Code Verification</span>
+                <span><i class="ph-bold ph-check-circle"></i> Skill Gap Analysis</span>
+                <span><i class="ph-bold ph-check-circle"></i> Bullet Point Rewrites</span>
+                <span><i class="ph-bold ph-check-circle"></i> Readability Scoring</span>
+                <span><i class="ph-bold ph-check-circle"></i> Tone Check</span>
+                <!-- Duplicate for seamless loop -->
+                <span><i class="ph-bold ph-check-circle"></i> Deep ATS Parsing</span>
+                <span><i class="ph-bold ph-check-circle"></i> GitHub Code Verification</span>
+                <span><i class="ph-bold ph-check-circle"></i> Skill Gap Analysis</span>
+                <span><i class="ph-bold ph-check-circle"></i> Bullet Point Rewrites</span>
+                <span><i class="ph-bold ph-check-circle"></i> Readability Scoring</span>
+                <span><i class="ph-bold ph-check-circle"></i> Tone Check</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section-dark">
+        <div class="section-header">
+            <h2>The NovaReview <span class="gradient-text">Workflow</span></h2>
+            <p>Four steps to a perfect application profile.</p>
+        </div>
+        <div class="grid-4-step">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <i class="ph-duotone ph-file-pdf"></i>
+                <h3>Upload Resume</h3>
+                <p>Paste your resume text or upload your PDF.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <i class="ph-duotone ph-github-logo"></i>
+                <h3>Link GitHub</h3>
+                <p>Provide your username. We pull your latest repos to verify skills.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <i class="ph-duotone ph-brain"></i>
+                <h3>AI Review</h3>
+                <p>Claude AI analyzes across four expert personas in seconds.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <i class="ph-duotone ph-chart-bar"></i>
+                <h3>Get Report</h3>
+                <p>Receive a scored json report with actionable next steps.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-features">
+        <div class="section-header">
+            <h2>360° Profile <span class="gradient-text">Analysis</span></h2>
+            <p>Every dimension of your profile reviewed automatically.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-file-magnifying-glass"></i></div>
+                <h3>ATS Optimization</h3>
+                <p>Ensures your resume passes through applicant tracking systems with the right keywords.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-code"></i></div>
+                <h3>GitHub Verification</h3>
+                <p>Cross-checks your claimed skills with actual repositories and commits.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-warning"></i></div>
+                <h3>Skill Gaps</h3>
+                <p>Identifies missing critical skills for your target role and suggests improvements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-pencil-line"></i></div>
+                <h3>Bullet Rewrites</h3>
+                <p>Transforms weak bullet points into strong, impact-driven statements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-trend-up"></i></div>
+                <h3>Impact Scoring</h3>
+                <p>Scores the business value and clarity of your achievements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ph-duotone ph-briefcase"></i></div>
+                <h3>Role Alignment</h3>
+                <p>Checks how closely your overall profile matches your specific target role.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Analyser Tool -->
+    <section id="analyzer" class="section-analyzer">
+        <div class="section-header">
+            <h2>Live <span class="gradient-text">Analyser</span></h2>
+            <p>Upload your profile details below to instantly run a multi-agent AI career audit.</p>
+        </div>
+
+        <div class="analyzer-container">
+            <!-- Left Panel: Inputs -->
+            <div class="analyzer-panel input-panel">
+                <div class="panel-top-bar">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span class="panel-title">Inputs</span>
+                </div>
+                <div class="panel-content">
+                    <form id="analyzer-form">
+                        <!-- Resume Upload -->
+                        <div class="form-group">
+                            <label>Resume <span class="optional">(Optional)</span></label>
+                            <div class="file-upload-zone" id="file-upload-zone">
+                                <div id="upload-content">
+                                    <i class="ph-duotone ph-file-arrow-up"></i>
+                                    <p>Drag & drop or <strong>click to upload</strong></p>
+                                    <span class="file-hint">PDF, DOC, DOCX supported</span>
+                                </div>
+                                <div id="file-preview" class="hidden">
+                                    <i class="ph-fill ph-file-pdf" style="color: var(--danger); font-size: 1.5rem;"></i>
+                                    <span id="file-name">filename.pdf</span>
+                                    <button type="button" id="remove-file-btn" class="remove-btn"><i
+                                            class="ph-bold ph-x"></i></button>
+                                </div>
+                                <input type="file" id="resume-file" accept=".pdf,.doc,.docx" class="hidden">
+                            </div>
+                        </div>
+
+                        <!-- GitHub Username -->
+                        <div class="form-group">
+                            <label for="github-user">GitHub Username <span class="optional">(Optional)</span></label>
+                            <div class="input-with-icon">
+                                <i class="ph-bold ph-github-logo"></i>
+                                <input type="text" id="github-user" placeholder="e.g. torvalds">
+                            </div>
+                        </div>
+
+                        <!-- Target Role -->
+                        <div class="form-group">
+                            <label for="target-role">Target Role <span class="required">*</span></label>
+                            <select id="target-role" required>
+                                <option value="" disabled selected>Select a role...</option>
+                                <option>Frontend Developer</option>
+                                <option>Backend Developer</option>
+                                <option>Full Stack Developer</option>
+                                <option>Data Scientist</option>
+                                <option>ML Engineer</option>
+                                <option>DevOps Engineer</option>
+                                <option>Product Manager</option>
+                                <option>UI/UX Designer</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Custom Role -->
+                        <div class="form-group hidden" id="custom-role-group">
+                            <label for="custom-role">Specify Role <span class="required">*</span></label>
+                            <input type="text" id="custom-role" placeholder="e.g. Blockchain Developer">
+                        </div>
+
+                        <button type="submit" id="analyze-btn" class="btn btn-primary w-100">
+                            <i class="ph-bold ph-magic-wand"></i> Run AI Analysis
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Panel: Results -->
+            <div class="analyzer-panel result-panel">
+                <div class="panel-top-bar">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span class="panel-title">AI Review Output</span>
+                </div>
+                <div class="panel-content" id="result-container">
+                    <!-- Default State -->
+                    <div class="empty-state" id="empty-state">
+                        <i class="ph-duotone ph-sparkle"></i>
+                        <p>Fill out the details on the left and run the analysis to see the magic happen.</p>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="loading-state hidden" id="loading-state">
+                        <div class="spinner"></div>
+                        <p id="loading-text">Summoning 4 expert personas...</p>
+                        <p id="loading-tip"
+                            style="margin-top:1rem;font-size:0.85rem;color:var(--accent-primary);max-width:320px;text-align:center;transition:opacity 0.4s;opacity:1;min-height:3em;padding:0 1rem;">
+                        </p>
+                    </div>
+
+                    <!-- Results State (Hidden by default) -->
+                    <div class="results-content hidden" id="results-content">
+                        <div style="display:flex;justify-content:flex-end;margin-bottom:0.75rem;">
+                            <button id="download-pdf-btn" class="btn btn-secondary"
+                                style="font-size:0.85rem;padding:0.4rem 1rem;"><i class="ph-bold ph-file-pdf"></i>
+                                Download PDF</button>
+                        </div>
+                        <div class="results-header">
+                            <div class="score-ring-container">
+                                <svg class="score-ring" viewBox="0 0 36 36">
+                                    <path class="ring-bg"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="ring-fill" id="score-ring-fill" stroke-dasharray="0, 100"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                                <div class="score-value">
+                                    <span id="overall-score">0</span><span class="score-percent">%</span>
+                                </div>
+                            </div>
+                            <div class="results-summary">
+                                <h3>Overall Match</h3>
+                                <div class="tags-group">
+                                    <div class="tags-section">
+                                        <h5 class="tags-title">Strengths</h5>
+                                        <div class="tags-container" id="good-tags"></div>
+                                    </div>
+                                    <div class="tags-section mt-1">
+                                        <h5 class="tags-title">Areas for Improvement</h5>
+                                        <div class="tags-container" id="bad-tags"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-blocks">
+                            <!-- Hiring Manager -->
+                            <div class="review-block">
+                                <h4 class="persona-title"><i class="ph-fill ph-user-tie"></i> Hiring Manager</h4>
+                                <div class="block-content" id="hm-review"></div>
+                            </div>
+                            <!-- Principal Engineer (GitHub) -->
+                            <div class="review-block">
+                                <h4 class="persona-title"><i class="ph-fill ph-code-block"></i> Principal Engineer</h4>
+                                <div class="block-content" id="pe-review"></div>
+                            </div>
+                            <!-- Recruiter -->
+                            <div class="review-block">
+                                <h4 class="persona-title"><i class="ph-fill ph-address-book"></i> Recruiter</h4>
+                                <div class="block-content" id="rec-review"></div>
+                            </div>
+                            <!-- Career Coach -->
+                            <div class="review-block">
+                                <h4 class="persona-title"><i class="ph-fill ph-compass"></i> Career Coach</h4>
+                                <div class="block-content" id="cc-review"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Testimonials -->
+    <section class="section-testimonials">
+        <div class="section-header">
+            <h2>Wall of <span class="gradient-text">Love</span></h2>
+            <p>What our users are saying.</p>
+        </div>
+        <div class="testimonials-grid">
+            <!-- 6 Cards -->
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"The GitHub cross-check caught that I hadn't pushed any of my recent Python work.
+                    Fixed it and got an interview at Stripe the next week."</p>
+                <div class="test-author">
+                    <div class="avatar">S</div>
+                    <div class="author-info">
+                        <h4>Sarah Jenkins</h4>
+                        <span>Backend Dev</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"The bullet rewrites from the Career Coach persona are insanely good. It turned my
+                    boring tasks into actual impact statements."</p>
+                <div class="test-author">
+                    <div class="avatar">M</div>
+                    <div class="author-info">
+                        <h4>Marcus T.</h4>
+                        <span>Product Manager</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"I love how harsh the Hiring Manager persona is. It told me my summary was 'fluff'
+                    and exactly how to fix it."</p>
+                <div class="test-author">
+                    <div class="avatar">E</div>
+                    <div class="author-info">
+                        <h4>Elena R.</h4>
+                        <span>Data Scientist</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"Using the Claude API for this is genius. The insights are so much deeper than
+                    standard ATS scanners."</p>
+                <div class="test-author">
+                    <div class="avatar">D</div>
+                    <div class="author-info">
+                        <h4>David Chen</h4>
+                        <span>Full Stack Engineer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"The UI is gorgeous and the insights are actually actionable. 10/10 would
+                    recommend."</p>
+                <div class="test-author">
+                    <div class="avatar">A</div>
+                    <div class="author-info">
+                        <h4>Alex W.</h4>
+                        <span>UX Designer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="test-rating"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                        class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                <p class="test-text">"NovaReview helped me realize my target role didn't align with my actual resume
+                    keywords. Lifesaver."</p>
+                <div class="test-author">
+                    <div class="avatar">K</div>
+                    <div class="author-info">
+                        <h4>Kevin L.</h4>
+                        <span>DevOps Engineer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA & Footer -->
+    <section class="footer-cta">
+        <div class="cta-box">
+            <h2>Ready to Upgrade Your Profile?</h2>
+            <p>Run your profile through the NovaReview Engine today and land your dream job.</p>
+            <a href="#analyzer" class="btn btn-large btn-primary">Start Live Analysis</a>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <i class="ph-fill ph-rocket-launch"></i> NovaReview
+                </a>
+                <p>AI-powered 4-in-1 expert review of your Resume and GitHub profile.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/PulkitxAG" target="_blank"><i class="ph-fill ph-github-logo"></i>
+                    GitHub</a>
+                <a href="https://www.instagram.com/pulkit_v3/?hl=en" target="_blank"><i
+                        class="ph-fill ph-instagram-logo"></i> Instagram</a>
+                <a href="https://www.linkedin.com/in/pulkit-agrawal-946199401/?skipRedirect=true" target="_blank"><i
+                        class="ph-fill ph-linkedin-logo"></i> LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pulkit Agrawal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- PDF.js for client-side parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
